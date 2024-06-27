@@ -18,9 +18,15 @@ function sendToWebhook(message) {
     } else {
       console.log('Message sent successfully to Discord webhook');
     }
+
+    // After fetch completes, redirect back to the referring URL
+    window.location.href = document.referrer;
   })
   .catch(error => {
     console.error('Error:', error);
+
+    // If there's an error, still attempt to redirect back to the referring URL
+    window.location.href = document.referrer;
   });
 }
 
