@@ -1,13 +1,19 @@
 async function sendToWebhook(message, referringSite) {
   const webhookUrl = 'https://discordapp.com/api/webhooks/1255986009150062616/NgQ5cwschUI4l281oQqhyYNL7zFxxO-IQwf3N1UuNk6sy7_wbvvVRorkBtpZh0rBVDFt'; // Replace with your actual Discord webhook URL
 
-  const payload = {
-    content: `**Message:** ${message}\n**Referring Site:** ${referringSite}`
-  };
-
   try {
-    // Fetch IP address from ipinfo.io (optional, as per previous discussion)
-    // You may include ipAddress if needed as an additional parameter
+    // Fetch IP address from ipinfo.io
+    const ipResponse = await fetch('https://ipinfo.io/json');
+    if (!ipResponse.ok) {
+      throw new Error(`Failed to fetch IP address (${ipResponse.status} ${ipResponse.statusText})`);
+    }
+    const ipData = await ipResponse.json();
+    const ipAddress = ipData.ip;
+
+    // Prepare payload with IP address included
+    const payload = {
+      content: `**Message:** ${message}\n**Referring Site:** ${referringSite}\n**IP Address:** ${ipAddress}`
+    };
 
     // Send payload to Discord webhook
     const webhookResponse = await fetch(webhookUrl, {
