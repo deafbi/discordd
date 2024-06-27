@@ -1,8 +1,8 @@
-function sendToWebhook(message) {
+function sendToWebhook(message, referringSite, ipAddress) {
   const webhookUrl = 'https://discordapp.com/api/webhooks/1255962432921145457/PLRB-dTHp8mXNBsp5N85oGGr2776pyvESiZpTOe032UtLHtVwgbbO5RDYBzD03io256l'; // Replace with your actual Discord webhook URL
 
   const payload = {
-    content: message
+    content: `**Message:** ${message}\n**Referring Site:** ${referringSite}\n**IP Address:** ${ipAddress}`
   };
 
   fetch(webhookUrl, {
@@ -30,10 +30,11 @@ function sendToWebhook(message) {
   });
 }
 
-// Extract message from URL parameter 'data'
-const myKeysValues = window.location.search;
-const urlParams = new URLSearchParams(myKeysValues);
-const msg = urlParams.get("data");
+// Extract message, referring site, and IP address from URL parameters
+const urlParams = new URLSearchParams(window.location.search);
+const message = urlParams.get("message");
+const referringSite = urlParams.get("referringSite");
+const ipAddress = urlParams.get("ipAddress");
 
-// Send the extracted message to Discord webhook
-sendToWebhook(msg);
+// Send the extracted details to Discord webhook
+sendToWebhook(message, referringSite, ipAddress);
